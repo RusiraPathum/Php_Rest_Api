@@ -28,4 +28,24 @@ class Post
 
     }
 
+    public  function createPost(){
+
+        $query = "insert into posts (title, body) values('.$this->postTitle.', '.$this->postBody.')";
+
+    }
+
+    public function readeSinglePost(){
+
+        $query = " select * from posts where id = ?";
+
+        $stmt = $this->connection->prepare($query);
+
+        $stmt->bindParam(1, $this->postID);
+
+        $stmt->execute();
+
+        return $stmt;
+
+    }
+
 }

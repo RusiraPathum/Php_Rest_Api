@@ -22,6 +22,9 @@
 <button onclick="read()">
     read
 </button>
+<button onclick="readSingle()">
+    read Single
+</button>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -33,10 +36,27 @@
 
 <script>
     function read() {
-        alert("hh");
+        // alert("hh");
         $.ajax({
             url: '../API/post/read.php',
             method: 'GET',
+            success: function (data) {
+                alert(data);
+                console.log(data);
+            }
+
+        });
+
+    }
+
+    var id = 3;
+
+    function readSingle() {
+        // alert("hh");
+        $.ajax({
+            url: '../API/post/read_single.php',
+            method: 'GET',
+            data: {id: id},
             success: function (data) {
                 alert(data);
                 console.log(data);
