@@ -30,7 +30,16 @@ class Post
 
     public  function createPost(){
 
-        $query = "insert into posts (title, body) values('.$this->postTitle.', '.$this->postBody.')";
+        $query = 'insert into posts SET title = ?, body = ?';
+
+        $stmt = $this->connection->prepare($query);
+
+        $stmt->bindParam(1, $this->postTitle);
+        $stmt->bindParam(2, $this->postBody);
+
+        $stmt->execute();
+
+        return $stmt;
 
     }
 

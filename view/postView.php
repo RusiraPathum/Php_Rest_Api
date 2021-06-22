@@ -19,12 +19,25 @@
 </head>
 <body>
 
-<button onclick="read()">
-    read
-</button>
-<button onclick="readSingle()">
-    read Single
-</button>
+<div class="container mt-5">
+    <form>
+        <div class="mb-4">
+            <input type="text" class="form-control" id="title" placeholder="Post Title">
+        </div>
+        <div class="mb-4">
+            <input type="text" class="form-control" id="body" placeholder="Post Body">
+        </div>
+        <div>
+            <button class="btn btn-primary" id="submit">Submit</button>
+        </div>
+    </form>
+
+    <div class="mt-5">
+        <button class="btn btn-success" onclick="read()">read</button>
+        <button class="btn btn-warning" onclick="readSingle()">read Single</button>
+    </div>
+
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -35,13 +48,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
+
     function read() {
         // alert("hh");
         $.ajax({
             url: '../API/post/read.php',
             method: 'GET',
             success: function (data) {
-                alert(data);
+                // alert(data);
                 console.log(data);
             }
 
@@ -58,13 +72,37 @@
             method: 'GET',
             data: {id: id},
             success: function (data) {
-                alert(data);
+                // alert(data);
                 console.log(data);
             }
 
         });
 
     }
+
+    $('#submit').click(function (){
+
+        let title = $('#title').val();
+        let body = $('#body').val();
+
+        let dtObj = {
+            title:title,
+            body:body
+        }
+
+        let data = JSON.stringify(dtObj)
+        // alert(data);
+
+        $.ajax({
+            url:'../API/post/create_post.php',
+            method:'POST',
+            data: data,
+            success:function (data){
+                alert(data);
+            }
+        })
+
+    })
 
 </script>
 
