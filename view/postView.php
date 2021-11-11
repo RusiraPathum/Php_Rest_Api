@@ -28,13 +28,14 @@
             <input type="text" class="form-control" id="body" placeholder="Post Body">
         </div>
         <div>
-            <button class="btn btn-primary" id="submit">Submit</button>
+            <button type="button" class="btn btn-primary" id="submit">Submit</button>
         </div>
     </form>
 
     <div class="mt-5">
         <button class="btn btn-success" onclick="read()">read</button>
         <button class="btn btn-warning" onclick="readSingle()">read Single</button>
+        <button class="btn btn-secondary" onclick="update()">read Single</button>
     </div>
 
 </div>
@@ -82,6 +83,8 @@
 
     $('#submit').click(function (){
 
+        // alert("ghg");
+
         let title = $('#title').val();
         let body = $('#body').val();
 
@@ -91,18 +94,41 @@
         }
 
         let data = JSON.stringify(dtObj)
-        // alert(data);
+        alert(data);
 
         $.ajax({
             url:'../API/post/create_post.php',
             method:'POST',
             data: data,
             success:function (data){
-                alert(data);
+                console.log(data);
+                // alert(data);
             }
         })
 
     })
+
+    function update() {
+        // alert("hh");
+
+        let id = 4;
+        let title = "Updated";
+        let body = "Updated";
+
+        let data = {id: id, title:title, body:body}
+        data= JSON.stringify(data);
+        $.ajax({
+            url: '../API/post/update_post.php',
+            method: 'POST',
+            data: data,
+            success: function (data) {
+                // alert(data);
+                console.log(data);
+            }
+
+        });
+
+    }
 
 </script>
 

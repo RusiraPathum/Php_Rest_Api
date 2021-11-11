@@ -48,3 +48,25 @@ class db
         return $stamnet;
     }
 }
+
+
+
+//use Kreait\Firebase\Configuration;
+//use Kreait\Firebase\Firebase;
+//
+//$clientId = '1234567890';
+//$email = 'account@email.com';
+//$key = 'private_key_goes_here';
+//$url = 'https://example.firebaseio.com';
+//
+//$fbConfig = new Configuration();
+//$fbConfig->setAuthConfigFile([
+//    'type' => 'service_account',
+//    'client_id' => $clientId,
+//    'client_email' => $email,
+//    'private_key' => $key,
+//]);
+//
+//$fb = new Firebase($url, $fbConfig);
+//$value = $fb->get('test/hello');
+//# $value now stores "world"
